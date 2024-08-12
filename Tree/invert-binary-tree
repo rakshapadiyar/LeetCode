@@ -2,20 +2,17 @@ https://leetcode.com/problems/invert-binary-tree/
 class Solution {
    
     public TreeNode invertTree(TreeNode root) {
-        invert(root);
-        return root;
-    }
-    public void invert(TreeNode root)
-    {
         if(root==null)
-        return;
+        return null;
 
         TreeNode leftPtr = root.left;
-        TreeNode rightPtr = root.right;
-        root.left = rightPtr;
+        root.left = root.right;
         root.right = leftPtr;
 
-        invert(root.left);
-        invert(root.right);
+        invertTree(root.left);
+        invertTree(root.right);
+        
+        return root;
     }
+   
 }

@@ -1,0 +1,41 @@
+https://leetcode.com/problems/subtree-of-another-tree/
+
+class Solution {
+    public boolean isSubtree(TreeNode root, TreeNode subRoot) {
+        String rootPreOrder = preOrder(root,"");
+        String subRootPreOrder = preOrder(subRoot,"");
+
+        if(rootPreOrder.indexOf(subRootPreOrder)>=0)
+         return true;
+        return false;
+    }
+
+    public String preOrder(TreeNode root, String s)
+    {
+        if(root==null)
+         return "null";
+        s="#"+root.val+preOrder(root.left,s) +""+preOrder(root.right,s);
+        return s;
+    }
+}
+
+
+// solution 2
+class Solution {
+    public boolean isSubtree(TreeNode root, TreeNode subRoot) {
+       if(root==null && subRoot==null)
+        return true;
+       if(root==null || subRoot==null)
+        return false;
+       return (isSameTree(root,subRoot)|| isSubtree(root.left,subRoot) || isSubtree(root.right,subRoot));
+    }
+    public boolean isSameTree(TreeNode root, TreeNode subRoot)
+    {
+        if(root==null && subRoot==null)
+         return true;
+        if(root==null || subRoot==null || root.val!=subRoot.val)
+         return false;
+        return (isSameTree(root.left,subRoot.left) && isSameTree(root.right,subRoot.right));
+    }
+        
+}

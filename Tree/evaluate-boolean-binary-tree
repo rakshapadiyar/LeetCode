@@ -1,0 +1,65 @@
+https://leetcode.com/problems/evaluate-boolean-binary-tree/description/
+
+//recursive
+class Solution {
+    public boolean evaluateTree(TreeNode root) {
+     if(root.val==0)
+     return false;
+     if(root.val==1)
+     return true;
+     if(root.val==2)
+     {
+       return(evaluateTree(root.left) | evaluateTree(root.right));
+     }
+     else
+     {
+        return(evaluateTree(root.left) & evaluateTree(root.right));
+     }
+    }
+}
+
+//iterative post order l r ro
+class Solution {
+    public boolean evaluateTree(TreeNode root) {
+    Stack<TreeNode> st = new Stack<>();
+    HashMap<TreeNode,Boolean> hm = new HashMap<>();
+    st.push(root);
+    while(!st.isEmpty())
+    {
+        TreeNode node = st.pop();
+        if(node.left==null) //leaf
+        {
+            boolean value=false;
+            if(node.val==0)
+                value = false;
+            else
+                value = true;
+            hm.put(node,value);
+        }
+        else
+        {
+            if(!hm.containsKey(node.left))
+            {
+              st.push(node);
+              st.push(node.right);
+              st.push(node.left);
+            }
+            else
+            {
+                if(node.val==2)
+                {
+                    boolean value = hm.get(node.left) | hm.get(node.right);
+                    hm.put(node,value);
+                }
+                if(node.val==3)
+                {
+                    boolean value = hm.get(node.left) & hm.get(node.right);
+                    hm.put(node,value);
+                }
+            }
+        }
+
+    }
+    return hm.get(root);
+    }
+}

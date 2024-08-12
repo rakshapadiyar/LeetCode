@@ -1,0 +1,22 @@
+//https://leetcode.com/problems/leaf-similar-trees/description/
+
+class Solution {
+    public boolean leafSimilar(TreeNode root1, TreeNode root2) {
+       // System.out.println(dfs(root1,"") + " "+ dfs(root2,""));
+        return(dfs(root1,"").equals(dfs(root2,"")));
+    }
+
+    public String dfs(TreeNode node, String s)
+    {
+        if(node==null)
+        return s;
+        if(node.left==null && node.right==null)
+        {
+            return s+" "+node.val;
+        }
+        else
+        {
+            return (dfs(node.left,s)+""+dfs(node.right,s));
+        }
+    }
+}

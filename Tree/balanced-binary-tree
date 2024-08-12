@@ -1,0 +1,21 @@
+https://leetcode.com/problems/balanced-binary-tree/
+
+class Solution {
+    public boolean ans=true;
+    public boolean isBalanced(TreeNode root) {
+        dfs(root);
+        return ans;
+    }
+    public int dfs(TreeNode root)
+    {
+        if(root==null)
+        return 0;
+        if(root.left==null && root.right==null)
+        return 1;
+        int leftHeight = dfs(root.left);
+        int rightHeight = dfs(root.right);
+        if(Math.abs(leftHeight-rightHeight)>1)
+        ans=false;
+        return (Math.max(leftHeight,rightHeight)+1);
+    }
+}

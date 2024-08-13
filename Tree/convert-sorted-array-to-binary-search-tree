@@ -1,4 +1,6 @@
 https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/
+time o(n)
+space o(logn) (balanced tree)
 
 class Solution {
     public TreeNode sortedArrayToBST(int[] nums) {

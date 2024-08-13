@@ -1,0 +1,17 @@
+https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/description/
+
+class Solution {
+    public int[] replaceElements(int[] arr) {
+        int val=-1;
+        int ans[]=new int[arr.length];
+        for(int i=arr.length-1;i>=0;i--)
+        {
+            ans[i]=val;
+            if(arr[i]>val)
+            {
+                val=arr[i];
+            }
+        }
+        return ans;
+    }
+}

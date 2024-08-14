@@ -1,0 +1,19 @@
+https://leetcode.com/problems/reverse-bits/
+https://leetcode.com/problems/reverse-bits/solutions/1232842/java-c-0ms-o-1-time-complexity-in-place-detailed-explanation/
+// its easy,
+// right shift has to be unsigned shift, else if the number's 31st bit is 1, all the leftmost bits will be 1 while shifting and this messes the or operation we do later.
+
+// O(1) time
+// O(1) space
+
+public class Solution {
+    // you need treat n as an unsigned value
+    public int reverseBits(int n) {
+        n  =   (((n & 0xffff0000) >>>16) | ((n & 0x0000ffff) << 16));
+        n  =   (((n & 0xff00ff00) >>>8)  | ((n & 0x00ff00ff) << 8));
+        n  =   (((n & 0xf0f0f0f0) >>>4)  | ((n & 0x0f0f0f0f) << 4));
+        n  =   (((n & 0xcccccccc) >>>2)  | ((n & 0x33333333) << 2));
+        n  =   (((n & 0xaaaaaaaa) >>>1)  | ((n & 0x55555555) << 1));
+        return n;
+    }
+}

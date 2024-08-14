@@ -1,0 +1,55 @@
+https://leetcode.com/problems/binary-tree-postorder-traversal/
+
+//recursive
+class Solution {
+    public List<Integer> postorderTraversal(TreeNode root) {
+        List<Integer> al = new ArrayList<>();
+        helper(root,al);
+        return al;
+    }
+    public void helper(TreeNode root, List<Integer> al)
+    {
+        if(root==null)
+        {
+            return;
+        }
+        helper(root.left,al);
+        helper(root.right,al);
+        al.add(root.val);
+    }
+}
+
+//iterative
+
+class Solution {
+    public List<Integer> postorderTraversal(TreeNode root) {
+        List<Integer> ls = new ArrayList<>();
+        HashSet<TreeNode> hs = new HashSet<>();
+        Stack<TreeNode> st = new Stack<>();
+        if(root==null)
+        return ls;
+        hs.add(null);
+        st.push(root);
+        while(!st.isEmpty())
+        {
+            TreeNode tmp = st.pop();
+            if(hs.contains(tmp.left) && hs.contains(tmp.right))
+            {
+                ls.add(tmp.val);
+                hs.add(tmp);
+                continue;
+            }
+            st.push(tmp);
+            if(hs.contains(tmp.left))
+            {
+                st.push(tmp.right);
+            }
+            else
+            {
+                st.push(tmp.left);
+            }
+
+        }
+        return ls;
+    }
+}

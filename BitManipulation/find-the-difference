@@ -1,0 +1,52 @@
+https://leetcode.com/problems/find-the-difference/description/
+
+class Solution {
+    public char findTheDifference(String s, String t) {
+        int xor=0;
+        for(int i=0;i<s.length();i++)
+        {
+            xor=xor^(s.charAt(i)-'a');
+        }
+        for(int i=0;i<t.length();i++)
+        {
+            xor=xor^(t.charAt(i)-'a');
+        }
+        return (char)(xor+'a');
+    }
+}
+
+and
+
+class Solution {
+    public char findTheDifference(String s, String t) {
+     int xor=0;
+     for(int i=0;i<s.length();i++)
+     {
+         xor=xor^s.charAt(i);
+     }
+      for(int i=0;i<t.length();i++)
+     {
+         xor=xor^t.charAt(i);
+     }
+     return (char)(xor);
+    }
+}
+
+//why both work
+Example: If you XOR characters from both strings:
+Suppose you have characters 'a' and 'b':
+For the first implementation:
+xor = 0
+After processing s with characters 'a', 'b':
+xor = 0 ^ (0) ^ (1) (assuming 0 for 'a' and 1 for 'b')
+After processing t with characters 'a', 'b', and an additional 'c':
+xor = 0 ^ (0) ^ (1) ^ (2)
+This ultimately results in 2, which corresponds to 'c'.
+For the second implementation:
+You would have:
+xor = 0
+After processing the characters:
+xor = 0 ^ (97) ^ (98) for characters in s (i.e., 'a' and 'b').
+After processing t with characters:
+xor = 0 ^ (97) ^ (98) ^ (99) for t (i.e., 'a', 'b', and 'c').
+This also ultimately results in the Unicode value of 99, which corresponds to 'c'.

@@ -1,0 +1,24 @@
+https://leetcode.com/problems/counting-bits/description/
+
+class Solution {
+    public int[] countBits(int n) {
+        int ans[] = new int[n+1];
+        ans[0]=0;
+        if(n==0)return ans;
+        ans[1]=1;
+        
+        for(int i=2;i<=n;i++)
+        ans[i]=ans[i/2]+(i%2);
+        return ans;
+    }
+}
+
+this works because when u left shift a number, it becomes number*2
+5   - 0101
+10  - 1010
+
+if i want 10's -> its 5's bits
+if i want 11's -> its 5's bits + 1 (since odd) 
+
+if i want 12's bits -> ssame as 6's bits
+if i want 13's bits => its as 6's + 1

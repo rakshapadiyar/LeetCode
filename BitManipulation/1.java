@@ -1,3 +1,5 @@
+https://leetcode.com/discuss/general-discussion/136585/a-summary-how-to-use-bit-manipulation-to-solve-things-clearly-and-efficiently
+
 Bitwise Operators:
 
 AND (&): Sets each bit to 1 if both bits are 1.

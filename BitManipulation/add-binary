@@ -4,6 +4,36 @@ class Solution {
     public String addBinary(String a, String b) {
         int aPtr = a.length() - 1, bPtr = b.length() - 1;
         StringBuilder sb = new StringBuilder();
+        int sum = 0, carry = 0;
+        while (aPtr >= 0 || bPtr >= 0) {
+            sum = 0;
+
+            if (aPtr >= 0) {
+                sum = (int) (a.charAt(aPtr--) - '0');
+            }
+
+            if (bPtr >= 0) {
+                sum = sum + (int) (b.charAt(bPtr--) - '0');
+            } 
+
+            sum=sum+carry;
+            
+            sb = sb.append(sum%2);
+            
+            carry = sum/2;
+        }
+        if (carry != 0)
+            sb.append(carry);
+
+        return sb.reverse().toString();
+    }
+}
+
+
+class Solution {
+    public String addBinary(String a, String b) {
+        int aPtr = a.length() - 1, bPtr = b.length() - 1;
+        StringBuilder sb = new StringBuilder();
         int carry = 0;
         while (aPtr >= 0 || bPtr >= 0) {
             int aBit = 0, bBit = 0;

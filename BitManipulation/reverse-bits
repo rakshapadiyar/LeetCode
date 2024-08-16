@@ -1,5 +1,5 @@
 https://leetcode.com/problems/reverse-bits/
-https://leetcode.com/problems/reverse-bits/solutions/1232842/java-c-0ms-o-1-time-complexity-in-place-detailed-explanation/
+https://leetcode.com/problems/reverse-bits/solutions/1232842/java-c-0ms-o-1-time-complexity-in-place-detailed-explanation/ 
 // its easy,
 // right shift has to be unsigned shift, else if the number's 31st bit is 1, all the leftmost bits will be 1 while shifting and this messes the or operation we do later.
 

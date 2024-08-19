@@ -1,0 +1,19 @@
+https://leetcode.com/problems/validate-stack-sequences/
+class Solution {
+    public boolean validateStackSequences(int[] pushed, int[] popped) {
+        Stack<Integer> st = new Stack<>();
+        int pop = 0;
+        for(int val : pushed)
+        {
+            st.push(val);
+            while(!st.isEmpty() && pop<popped.length && st.peek()==popped[pop])
+            {
+                st.pop();
+                pop++;
+            }
+        }
+        if(st.isEmpty())
+         return true;
+        return false;
+    }
+}

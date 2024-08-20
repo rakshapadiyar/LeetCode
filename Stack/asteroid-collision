@@ -1,0 +1,32 @@
+https://leetcode.com/problems/asteroid-collision/
+class Solution {
+    public int[] asteroidCollision(int[] asteroids) {
+        Stack<Integer> st = new Stack<>();
+        int i = 0, val = 0;
+        while (i < asteroids.length) {
+            if (val == 0) {
+                val = asteroids[i];
+            }
+            if (st.isEmpty() || (val < 0 && st.peek() < 0) || (val > 0 && st.peek() < 0)
+                    || (val > 0 && st.peek() > 0)) {
+                // System.out.println(" pushed into stack "+val);
+                st.push(val);
+                i++;
+                val = 0;
+            } else {
+                int topVal = st.pop();
+                if (Math.abs(topVal) == Math.abs(val)) {
+                    val = 0;
+                    i++;
+                } else if (Math.abs(topVal) > Math.abs(val)) {
+                    val = topVal;
+                }
+            }
+        }
+        int ans[] = new int[st.size()];
+        for (int j = ans.length - 1; j >= 0; j--) {
+            ans[j] = st.pop();
+        }
+        return ans;
+    }
+}

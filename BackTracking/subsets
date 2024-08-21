@@ -1,0 +1,45 @@
+https://leetcode.com/problems/subsets/
+
+class Solution {
+    public List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> ans = new ArrayList<>();
+        List<Integer> ls = new ArrayList<>();
+        helper(ans, ls, nums, 0);
+        return ans;
+    }
+
+    public void helper(List<List<Integer>> ans, List<Integer> ls, int[] nums, int i) {
+        if (i >= nums.length) {
+            ans.add(new ArrayList<>(ls));
+            return;
+        } else {
+            ls.add(nums[i]);
+            helper(ans, ls, nums, i + 1);
+            ls.remove(ls.size() - 1);
+            helper(ans, ls, nums, i + 1);
+
+        }
+    }
+}
+
+//works
+            helper(ans,ls,nums,i+1);
+            ls.add(nums[i]);
+            helper(ans,ls,nums,i+1);
+            ls.remove(ls.size()-1);
+
+//works
+            ls.add(nums[i]);
+            helper(ans,ls,nums,i+1);
+            ls.remove(ls.size()-1);
+            helper(ans,ls,nums,i+1);
+            
+// does not work
+            helper(ans,ls,nums,i+1);
+            ls.add(nums[i]);
+            helper(ans,ls,nums,i+1);
+
+The problem is that after adding an element to the current subset (ls.add(nums[i])),
+you need to ensure that the subset is backtracked correctly to maintain the proper state for subsequent recursive calls.
+The backtracking step is crucial because it ensures that the state of ls is properly reset after processing each possibility.
+Without this step, the list ls will carry over elements from previous recursive calls, leading to incorrect subsets being generated.           

@@ -1,0 +1,35 @@
+https://leetcode.com/problems/unique-email-addresses/description/
+class Solution {
+    public int numUniqueEmails(String[] emails) {
+        HashSet<String> hs = new HashSet<>();
+        for(int i=0;i<emails.length;i++)
+        {
+            String original = emails[i];
+            StringBuilder sb = new StringBuilder();
+            int j=0;
+            while(original.charAt(j)!='+' && original.charAt(j)!='@')
+            {
+                if(original.charAt(j)!='.')
+                sb=sb.append(original.charAt(j));
+                j++;
+            }
+            while(original.charAt(j)!='@')
+                j++;
+            
+            while(original.charAt(j)!='.' )
+            {
+                sb=sb.append(original.charAt(j));
+                j++;
+            }
+           
+            while(j<original.length())
+            {
+                sb=sb.append(original.charAt(j));
+                j++;
+            }
+            System.out.println(sb);
+            hs.add(sb.toString());
+        }
+        return hs.size();
+    }
+}

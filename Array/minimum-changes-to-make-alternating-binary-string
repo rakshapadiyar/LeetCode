@@ -1,0 +1,25 @@
+https://leetcode.com/problems/minimum-changes-to-make-alternating-binary-string/
+class Solution {
+    public int minOperations(String s) {
+        int evenOne = 0, oddOne = 0;
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if ((i & 1) == 0) // even position - 0's
+            {
+                if (c == '1') {
+                    oddOne++;
+                } else {
+                    evenOne++;
+                }
+            } else // odd posiiton 1s must be there
+            {
+                if (c == '1') {
+                    evenOne++;
+                } else {
+                    oddOne++;
+                }
+            }
+        }
+        return Math.min(evenOne, oddOne);
+    }
+}

@@ -1,0 +1,61 @@
+https://leetcode.com/problems/word-pattern/
+class Solution {
+    public boolean wordPattern(String pattern, String s) {
+        HashMap<Character, String> hm = new HashMap<>();
+        HashSet<String> hs = new HashSet<>();
+        int j = 0, i = 0;
+        for (i = 0; i < pattern.length(); i++) {
+            StringBuilder sb = new StringBuilder();
+            if (j >= s.length())
+                return false;
+            while (j < s.length() && s.charAt(j) != ' ') {
+                sb.append(s.charAt(j));
+                j++;
+            }
+            j++;
+            String val = sb.toString();
+            if (!hm.containsKey(pattern.charAt(i))) {
+                if (hs.contains(val)) {
+                    return false;
+                }
+                hm.put(pattern.charAt(i), val);
+                hs.add(val);
+            } else if (!hm.get(pattern.charAt(i)).equals(val)) {
+                return false;
+            }
+        }
+        if (j < s.length()) {
+            return false;
+        }
+        return true;
+    }
+}
+
+//alt
+class Solution {
+    public boolean wordPattern(String pattern, String s) {
+        String sArray[] = s.split(" ");
+        if(sArray.length!=pattern.length()) 
+        {
+            //System.out.print("6");
+            return false;
+        }
+        HashMap<Character,String> hm = new HashMap<>();
+        for(int i=0;i<pattern.length();i++)
+        {
+            if(hm.containsKey(pattern.charAt(i)))
+            {
+                if(!hm.get(pattern.charAt(i)).equals(sArray[i]))
+                {
+               // System.out.print("16"+" char is "+pattern.charAt(i)+" i is "+i+" sarr is "+sArray[i]);
+                return false;
+                }
+                else continue;
+            }
+            else if (hm.containsValue(sArray[i])) return false;
+            else
+            hm.put(pattern.charAt(i),sArray[i]);
+        }
+        return true;
+    }
+}

@@ -1,0 +1,25 @@
+https://leetcode.com/problems/buy-two-chocolates/description/
+
+class Solution {
+    public int buyChoco(int[] prices, int money) {
+        int secMin = Integer.MAX_VALUE;
+        int min = Integer.MAX_VALUE;
+        for(int i=0;i<prices.length;i++)
+        {
+            if(prices[i]<min)
+            {
+                secMin = min;
+                min = prices[i];
+            }
+            else if(prices[i]<secMin)
+            {
+                secMin = prices[i];
+            }
+        }
+        if(min+secMin>money)
+            return money;
+        else
+            return(money- (min + secMin));
+
+    }
+}
